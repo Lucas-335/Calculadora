@@ -1,0 +1,54 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+body{
+    box-sizing: border-box;
+    background-color: blanchedalmond;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+main{
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+    border-radius: 3px;
+    background-color: rgb(31, 32, 90);
+}
+
+#display{
+    height: 5em;
+    background-color: white;
+    margin: 1em;
+    border-radius: 5px;
+}
+
+#grid-buttons{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px 5px;
+    margin: 2em 1em 0 1em;
+}
+
+.button{
+    width: 2.5em;
+    height: 2.3em;
+    background-color: rgb(61, 61, 102);
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+#num0{
+    grid-row: 4/6;
+    grid-column: 4/5;
+    height: auto;
+}
+
+#r2{
+    font-weight: bold;
+}
