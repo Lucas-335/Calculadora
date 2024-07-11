@@ -10,27 +10,29 @@ function operate(num1,num2,operator){
     if (num1 && num2 && operator){
         num1 = convertNumber(num1);
         num2 = convertNumber(num2);
-        console.log(num1,num2)
+        let result = '';
         switch (operator){
             case "+":
-                return num1 + num2;
+                result = num1 + num2;
                 break;
             case "-":
-                return num1 - num2;
+                result = num1 - num2;
                 break;
             case "*":
-                return num1 * num2;
+                result = num1 * num2;
                 break;
             case "/":
-                return num1 / num2;
+                result = num1 / num2;
                 break;
             case "%":
-                return num1 % num2;
+                result = num1 % num2;
                 break;
             case "√":
-                return Math.sqrt(num1);
+                result = Math.sqrt(num1);
                 break;
         }
+        
+        return convertNumber(result)
     }
     else{
         return "Digite a operação correta"
@@ -39,11 +41,11 @@ function operate(num1,num2,operator){
 
 //Função para converter o número em int ou float
 function convertNumber(number){
-    if(number.includes('.')){
-        return parseFloat(number)
+    if(String(number).includes('.')){
+        return parseFloat(number).toPrecision(10)
     }
     else{
-        return parseInt(number)
+        return parseInt(number).toPrecision(10)
     }
 }
 
@@ -91,7 +93,7 @@ operatorButtons.forEach((button)=>{
             if(button.id == 'r2'){
                 smallDisplay.textContent = `sqrt(${num1})`
                 num2 = num1
-                display.textContent = operate(num1,num2,operator)
+                display.textContent = convertNumber(operate(num1,num2,operator))
                 resultbool = true
                 return
             }
