@@ -28,7 +28,7 @@ main{
     border-radius: 5px;
     border: 1px solid black;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 #small-display{
@@ -43,6 +43,7 @@ main{
     top: 35px;
     font-size: 2em;
 }
+
 #grid-buttons{
     display: grid;
     grid-template-columns: auto auto auto auto;

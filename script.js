@@ -118,7 +118,9 @@ resultButton.addEventListener('click',()=>{
     if(operator){
         display.textContent = operate(num1,num2,operator)
 
-        smallDisplay.textContent += ` ${num2}`
+        if (operator != '√'){
+            smallDisplay.textContent += ` ${num2}`
+        }
         num1,num2,operator = false;
         resultbool = true
     }
