@@ -32,20 +32,28 @@ function operate(num1,num2,operator){
                 break;
         }
         
-        return convertNumber(result)
+        return truncNumber(result)
     }
     else{
         return "Digite a operação correta"
     }
 }
 
+//Função para truncar o número caso seja muito grande
+function truncNumber(number){
+    if(String(number).length > 14){
+        return Number(number).toPrecision(10)
+    }
+    return number
+}
+
 //Função para converter o número em int ou float
 function convertNumber(number){
     if(String(number).includes('.')){
-        return parseFloat(number).toPrecision(10)
+        return parseFloat(number)
     }
     else{
-        return parseInt(number).toPrecision(10)
+        return parseInt(number)
     }
 }
 
@@ -59,6 +67,9 @@ function clearDisplay(a,b,op,resultop){
 
 //Função para exibir o número do botão clicado no display
 function displayNumber(){
+    if(display.textContent.length > 14){
+        return
+    }
     if(resultbool){
         display.textContent = ''
         resultbool = false
