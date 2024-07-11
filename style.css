@@ -20,13 +20,27 @@ main{
     background-color: rgb(31, 32, 90);
 }
 
-#display{
+#screen-display{
     height: 5em;
     background-color: white;
     margin: 1em;
     border-radius: 5px;
+    border: 1px solid black;
+    position: relative;
 }
 
+#small-display{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+#display{
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    font-size: 2em;
+}
 #grid-buttons{
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -38,12 +52,14 @@ main{
     width: 2.5em;
     height: 2.3em;
     background-color: rgb(61, 61, 102);
-    border: 1px solid gray;
+    border: 1px solid black;
     border-radius: 5px;
     font-size: 1.5em;
+    color: rgb(201, 200, 200);
+    cursor: pointer;
 }
 
-#num0{
+#sum{
     grid-row: 4/6;
     grid-column: 4/5;
     height: auto;
