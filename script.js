@@ -8,8 +8,9 @@ let smallDisplay = document.querySelector('#small-display')
 //Função para calcular a expressão numérica dada os dois números e o operador
 function operate(num1,num2,operator){
     if (num1 && num2 && operator){
-        num1 = parseInt(num1);
-        num2 = parseInt(num2);
+        num1 = convertNumber(num1);
+        num2 = convertNumber(num2);
+        console.log(num1,num2)
         switch (operator){
             case "+":
                 return num1 + num2;
@@ -26,6 +27,9 @@ function operate(num1,num2,operator){
             case "%":
                 return num1 % num2;
                 break;
+            case "√":
+                return Math.sqrt(num1);
+                break;
         }
     }
     else{
@@ -33,12 +37,22 @@ function operate(num1,num2,operator){
     }
 }
 
+//Função para converter o número em int ou float
+function convertNumber(number){
+    if(number.includes('.')){
+        return parseFloat(number)
+    }
+    else{
+        return parseInt(number)
+    }
+}
+
 //Função para limpar a tela e as variáveis
-function clearDisplay(a,b,op){
+function clearDisplay(a,b,op,resultop){
     display.textContent = ''
     smallDisplay.textContent = ''
 
-    a,b,op,resultbool = false;
+    num1 = num2 = resultbool = operator = false
 }
 
 //Função para exibir o número do botão clicado no display
@@ -48,9 +62,15 @@ function displayNumber(){
         resultbool = false
     }
     let text = this.textContent
+    if(text == '.'){
+        if(display.textContent.includes('.')){
+            return
+        }
+        if(display.textContent == ''){
+            display.textContent += 0
+        }
+    }
     display.textContent += text
-
-    
 }
 
 //Colocando a função de exibir no display em cada botão de números
@@ -64,16 +84,26 @@ let operatorButtons = Array.from(document.querySelectorAll('.operator'))
 operatorButtons.forEach((button)=>{
     button.addEventListener('click',()=>{
         if(display.textContent){
+            
             num1 = display.textContent
             operator = button.textContent
-            smallDisplay.textContent = `${num1} ${operator}`
+
+            if(button.id == 'r2'){
+                smallDisplay.textContent = `sqrt(${num1})`
+                num2 = num1
+                display.textContent = operate(num1,num2,operator)
+                resultbool = true
+                return
+            }
+            else{
+                smallDisplay.textContent = `${num1} ${operator}`
+            }
             display.textContent = ''
         }
         else{
             alert('Digite ao menos um número')
         }
     })
-    
 })
 
 //Função para exibir o resultado da operação
@@ -87,6 +117,7 @@ resultButton.addEventListener('click',()=>{
 
     if(operator){
         display.textContent = operate(num1,num2,operator)
+
         smallDisplay.textContent += ` ${num2}`
         num1,num2,operator = false;
         resultbool = true
@@ -94,10 +125,8 @@ resultButton.addEventListener('click',()=>{
     else{
         display.textContent = num2
     }
-
 })
 
 //Colocando a função de limpa tela no botão OFF
 let clearButton = document.querySelector('#clear');
-clearButton.addEventListener('click',()=>{clearDisplay(num1,num2,operator)})
-
+clearButton.addEventListener('click',clearDisplay)
